@@ -29,15 +29,15 @@ export class AppComponent {
   }
   setModeToHex() {
     this.calcMode = 'Hex';
-    this.binaryClass = 'pill';
     this.hexClass = 'current-mode pill';
+    this.binaryClass = 'pill';
     this.decimalClass = 'pill';
   }
   setModeToDecimal() {
     this.calcMode = 'Decimal';
+    this.decimalClass = 'current-mode pill';
     this.binaryClass = 'pill';
     this.hexClass = 'pill';
-    this.decimalClass = 'current-mode pill';
   }
   
   @HostListener('document:keyup', ['$event'])
@@ -46,6 +46,32 @@ export class AppComponent {
     const key = event.key.substring(0, 1);
 
     switch(keystroke) {
+      case 'ArrowLeft':
+        switch(this.calcMode) {
+          case 'Decimal':
+            this.setModeToBinary();
+            break;
+          case 'Hex':
+            this.setModeToDecimal();
+            break;
+          case 'Binary':
+            this.setModeToHex();
+            break;
+        }
+        break;
+      case 'ArrowRight':
+        switch(this.calcMode) {
+          case 'Decimal':
+            this.setModeToHex();
+            break;
+          case 'Hex':
+            this.setModeToBinary();
+            break;
+          case 'Binary':
+            this.setModeToDecimal();
+            break;
+        }
+        break;
       case 'Backspace':
         switch(this.calcMode) {
           case 'Decimal':
