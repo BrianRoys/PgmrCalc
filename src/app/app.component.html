@@ -35,6 +35,7 @@
     );
 
     --pill-accent: var(--bright-blue);
+    --stack-item-accent: var(--gray-700);
 
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -89,7 +90,7 @@
   }
 
   .content p {
-    margin-top: 1.5rem;
+    margin-top: 0.25rem;
   }
 
   .divider {
@@ -106,15 +107,35 @@
     gap: 1.25rem;
   }
 
+  .stack-item {
+    display: flex;
+    align-items: center;
+    --pill-accent: var(--bright-blue);
+    background: color-mix(in srgb, var(--stack-item-accent) 15%, transparent);
+    color: var(--pill-accent);
+    padding-inline: 0.75rem;
+    padding-block: 0.375rem;
+    border-radius: 0;
+    border: 0;
+    transition: background 0.3s ease;
+    font-family: var(--inter-font);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4rem;
+    letter-spacing: -0.00875rem;
+    text-decoration: none;
+  }
+
   .pill {
     display: flex;
     align-items: center;
     --pill-accent: var(--bright-blue);
-    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
+    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
     color: var(--pill-accent);
     padding-inline: 0.75rem;
     padding-block: 0.375rem;
-    border-radius: 2.75rem;
+    border-radius: 0.75rem;
     border: 0;
     transition: background 0.3s ease;
     font-family: var(--inter-font);
@@ -127,7 +148,7 @@
   }
 
   .pill:hover {
-    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
+    background: color-mix(in srgb, var(--pill-accent) 25%, transparent);
   }
 
   .pill-group .pill:nth-child(6n + 1) {
@@ -144,6 +165,13 @@
 
   .pill-group svg {
     margin-inline-start: 0.25rem;
+  }
+
+  .current-mode{
+    background-color: rgb(43, 255, 0);
+  }
+  .current-mode:hover{
+    background-color: rgb(43, 255, 0);
   }
 
   .social-links {
@@ -177,32 +205,31 @@
   }
 </style>
 
-    <h1>{{ title }}</h1>
-    <h2>MODE: {{ calcMode }} </h2>
+<h1>{{ title }}</h1>
 <main class="main">
   <div class="content">
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="left-side">
-      <button class="pill" (click)="setModeToBinary()">Binary</button>
-      <p class="pill"> {{ calcValue | binary }} </p>
-      @for (item of calcStack; track $index) {
-        <p>[ {{ item | binary }} ]</p>
+      <button [class]="decimalClass" (click)="setModeToDecimal()">Decimal</button>
+      <p class="pill"> {{ calcValue }} </p>
+      @for (item of calcStackRev; track $index) {
+        <p class="stack-item">{{ item }}</p>
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="center-side">
-      <button class="pill" (click)="setModeToHex()">Hex</button>
+      <button [class]="hexClass" (click)="setModeToHex()">Hex</button>
       <p class="pill"> {{ calcValue | hex }} </p>
-      @for (item of calcStack; track $index) {
-        <p> {{ item | hex }} </p>
+      @for (item of calcStackRev; track $index) {
+        <p class="stack-item">{{ item | hex }}</p>
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
-      <button class="pill" (click)="setModeToDecimal()">Decimal</button>
-      <p class="pill"> {{ calcValue }} </p>
-      @for (item of calcStack; track $index) {
-        <p> {{ item }} </p>
+      <button [class]="binaryClass" (click)="setModeToBinary()">Binary</button>
+      <p class="pill"> {{ calcValue | binary }} </p>
+      @for (item of calcStackRev; track $index) {
+        <p class="stack-item">{{ item | binary }}</p>
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>

@@ -10,32 +10,61 @@ import { HexPipe } from "./hex.pipe";
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
+
 export class AppComponent {
   title = 'PgmrCalc';
   calcMode: ('Binary' | 'Hex') | 'Decimal' = 'Decimal';
   calcValue: bigint = 0n;
   calcStack: bigint[] = [];
+  calcStackRev: bigint[] = [];
+  binaryClass: string = 'pill';
+  hexClass: string = 'pill';
+  decimalClass: string = 'pill current-mode';
 
   setModeToBinary() {
     this.calcMode = 'Binary';
+    this.binaryClass = 'current-mode pill';
+    this.hexClass = 'pill';
+    this.decimalClass = 'pill';
   }
   setModeToHex() {
     this.calcMode = 'Hex';
+    this.binaryClass = 'pill';
+    this.hexClass = 'current-mode pill';
+    this.decimalClass = 'pill';
   }
   setModeToDecimal() {
     this.calcMode = 'Decimal';
+    this.binaryClass = 'pill';
+    this.hexClass = 'pill';
+    this.decimalClass = 'current-mode pill';
   }
   
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    console.log(`Key released globally: ${event.key}`);
     const keystroke = event.key;
     const key = event.key.substring(0, 1);
 
     switch(keystroke) {
+      case 'Backspace':
+        switch(this.calcMode) {
+          case 'Decimal':
+              this.calcValue /= 10n;
+            break;
+          case 'Hex':
+              this.calcValue /= 16n;
+            break;
+          case 'Binary':
+              this.calcValue /= 2n;
+            break;
+        }
+        break;
       case 'Enter':
         this.calcStack.push(this.calcValue);
         this.calcValue = 0n;
+        break;
+      case 'Escape':
+        this.calcValue = this.calcStack.pop() ?? 0n;
         break;
       case '+':
         this.calcValue += this.calcStack.pop() ?? 0n;
@@ -50,36 +79,28 @@ export class AppComponent {
         let q = this.calcStack.pop() ?? 0n;
         this.calcValue = q / this.calcValue;
         break;
-
     }
-    switch (this.calcMode) {
-      case 'Decimal':
-        if (keystroke === 'Backspace') {
-          this.calcValue /= 10n;
-        } else {
-          if (key >= '0' && key <= '9') {
-            this.calcValue = this.calcValue * 10n + BigInt(key);
+    
+    this.calcStackRev = [...this.calcStack].reverse();
+
+    if(keystroke.length == 1) {
+      switch (this.calcMode) {
+        case 'Decimal':
+            if (key >= '0' && key <= '9') {
+              this.calcValue = this.calcValue * 10n + BigInt(key);
+            } 
+          break;
+        case 'Hex':
+            if ((key >= '0' && key <= '9') || (key >= 'a' && key <= 'f') || (key >= 'A' && key <= 'F')) {
+              this.calcValue = this.calcValue * 16n + BigInt(parseInt(key, 16));
           } 
-        }
-        break;
-      case 'Hex':
-        if (keystroke === 'Backspace') {
-          this.calcValue /= 16n;
-        } else {
-          if ((key >= '0' && key <= '9') || (key >= 'a' && key <= 'f') || (key >= 'A' && key <= 'F')) {
-            this.calcValue = this.calcValue * 16n + BigInt(parseInt(key, 16));
-          }
-        } 
-        break;
-      case 'Binary':
-        if (keystroke === 'Backspace') {
-          this.calcValue /= 2n;
-        } else {
-          if (key === '0' || key === '1') {
-            this.calcValue = this.calcValue * 2n + BigInt(key);
-          } 
-        }
-        break;
+          break;
+        case 'Binary':
+            if (key === '0' || key === '1') {
+              this.calcValue = this.calcValue * 2n + BigInt(key);
+            } 
+          break;
+      }
     }
   }
 }
