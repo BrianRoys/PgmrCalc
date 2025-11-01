@@ -130,24 +130,25 @@ showHideText(ID: string) {
         break;
     }
     
+    // For displaying the stack in reverse LIFO order.
     this.calcStackRev = [...this.calcStack].reverse();
 
     if(keystroke.length == 1) {
       switch (this.calcMode) {
         case 'Decimal':
-            if (key >= '0' && key <= '9') {
-              this.calcValue = this.calcValue * 10n + BigInt(key);
-            } 
+          if (key >= '0' && key <= '9') {
+            this.calcValue = this.calcValue * 10n + BigInt(key);
+          } 
           break;
         case 'Hex':
-            if ((key >= '0' && key <= '9') || (key >= 'a' && key <= 'f') || (key >= 'A' && key <= 'F')) {
-              this.calcValue = this.calcValue * 16n + BigInt(parseInt(key, 16));
+          if ((key >= '0' && key <= '9') || (key >= 'a' && key <= 'f') || (key >= 'A' && key <= 'F')) {
+            this.calcValue = this.calcValue * 16n + BigInt(parseInt(key, 16));
           } 
           break;
         case 'Binary':
-            if (key === '0' || key === '1') {
-              this.calcValue = this.calcValue * 2n + BigInt(key);
-            } 
+          if (key === '0' || key === '1') {
+            this.calcValue = this.calcValue * 2n + BigInt(key);
+          } 
           break;
       }
     }

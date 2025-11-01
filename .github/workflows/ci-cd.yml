@@ -1,0 +1,46 @@
+name: Angular CI/CD
+
+on:
+  push:
+    branches:
+      - main # Trigger on pushes to the main branch
+  pull_request:
+    branches:
+      - main # Trigger on pull requests targeting the main branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Specify your Node.js version
+
+      - name: Install dependencies
+        run: npm ci
+
+      # - name: Run unit tests
+        # run: npm test -- --no-watch --browsers=ChromeHeadless # Run tests in a headless browser
+
+      - name: Build Angular application
+        run: npm run build -- --configuration=production # Build for production
+
+  deployIt:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: FTP Deploy
+        uses: SamKirkland/Ftp-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}         # Your FTP server address
+          username: ${{ secrets.FTP_USERNAME }}     # Your FTP username
+          password: ${{ secrets.FTP_PASSWORD }}     # Your FTP password
+          port: 21
+          local-dir: ./     # Path to your local build directory
+          server-dir: /public_html/PgmrCalc                 # Path on FTP server to deploy to        
