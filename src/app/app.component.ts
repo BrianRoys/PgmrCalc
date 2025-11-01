@@ -2,16 +2,28 @@ import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BinaryPipe, HexPipe],
+  imports: [RouterOutlet, BinaryPipe, HexPipe, CommonModule, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
 
 export class AppComponent {
+showInstructions: boolean = false;
+showStory: boolean = false;
+
+showHideText(ID: string) {
+  if (ID === 'H') {
+    this.showInstructions = !this.showInstructions;
+  } 
+  if (ID === 'S') {
+    this.showStory = !this.showStory;
+  } 
+}
   title = 'PgmrCalc';
   calcMode: ('Binary' | 'Hex') | 'Decimal' = 'Decimal';
   calcValue: bigint = 0n;
@@ -102,8 +114,19 @@ export class AppComponent {
         this.calcValue *= this.calcStack.pop() ?? 0n;
         break;
       case '/':
-        let q = this.calcStack.pop() ?? 0n;
-        this.calcValue = q / this.calcValue;
+        this.calcValue = (this.calcStack.pop() ?? 0n) / this.calcValue;
+        break;
+      case '&':
+        this.calcValue &= this.calcStack.pop() ?? 0n;
+        break;
+      case '|':
+        this.calcValue |= this.calcStack.pop() ?? 0n;
+        break;
+      case '^':
+        this.calcValue ^= this.calcStack.pop() ?? 0n;
+        break;
+      case '!':
+        this.calcValue = ~(this.calcStack.pop() ?? 0n);
         break;
     }
     

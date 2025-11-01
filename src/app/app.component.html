@@ -65,6 +65,13 @@
     position: relative;
   }
 
+  .calc-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1rem; */
+  }
+
   .angular-logo {
     max-width: 9.2rem;
   }
@@ -74,7 +81,7 @@
     justify-content: space-around;
     width: 100%;
     max-width: 700px;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
   }
 
   .content h1 {
@@ -201,7 +208,7 @@
 <main class="main">
   <div class="content">
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="left-side">
+    <div class="calc-column">
       <button [class]="decimalClass" (click)="setModeToDecimal()">Decimal</button>
       <p class="pill"> {{ calcValue }} </p>
       @for (item of calcStackRev; track $index) {
@@ -209,23 +216,57 @@
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="center-side">
+    <div class="calc-column">
       <button [class]="hexClass" (click)="setModeToHex()">Hex</button>
-      <p class="pill"> {{ calcValue | hex }} </p>
+      <p class="pill"> {{ calcValue | hexPipe }} </p>
       @for (item of calcStackRev; track $index) {
-        <p class="stack-item">{{ item | hex }}</p>
+        <p class="stack-item">{{ item | hexPipe }}</p>
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side">
+    <div class="calc-column">
       <button [class]="binaryClass" (click)="setModeToBinary()">Binary</button>
-      <p class="pill"> {{ calcValue | binary }} </p>
+      <p class="pill"> {{ calcValue | binaryPipe }} </p>
       @for (item of calcStackRev; track $index) {
-        <p class="stack-item">{{ item | binary }}</p>
+        <p class="stack-item">{{ item | binaryPipe }}</p>
       }
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
 </main>
-
+<p>
+  <button (click)="showHideText('H')">Hide/show instructions.</button>
+</p>
+<div *ngIf="showInstructions">
+  <p>
+    This calculator supports Decimal, Hexadecimal, and Binary number inputs. 
+  </p>
+  <p>
+    Use the mode buttons or the left/right arrow buttons to switch between modes. 
+  </p>
+  <p>
+    Enter numbers and operations using the provided interface, then press Enter to push 
+    the current value to the stack. 
+  </p>
+  <p>
+    You can perform calculations using standard operators 
+    (+, -, *, /) and view the results in all three number systems simultaneously.
+  </p>
+  <p>
+    Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
+  </p>
+  <p>
+    Escape will pop the top value off the stack.
+  </p>
+</div>
+<p>
+  <button (click)="showHideText('S')">Hide/show the story of this calculator.</button>
+</p>
+<div *ngIf="showStory">
+  <p>
+    This calculator was created to assist programmers in converting and calculating values across differe
+    nt number systems commonly used in programming. It aims to provide a user-friendly interface for quick
+    conversions and calculations.
+  </p>
+</div>
 <router-outlet />
