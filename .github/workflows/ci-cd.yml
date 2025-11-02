@@ -43,5 +43,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}     # Your FTP username
           password: ${{ secrets.FTP_PASSWORD }}     # Your FTP password
           port: 21
-          local-dir: /home/runner/work/PgmrCalc/PgmrCalc/dist/pgmr-calc/     # Path to your local build directory
+          local-dir: ./dist/pgmr-calc/     # Path to your local build directory
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
