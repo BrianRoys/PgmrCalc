@@ -32,7 +32,7 @@ jobs:
         run: npm run build -- --configuration=production # Build for production
 
   deployIt:
-    needs: build-and-test
+    needs: buildIt
     runs-on: ubuntu-latest
     
     steps:
