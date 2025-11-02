@@ -36,10 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        name: List dist directory contents
-        run: ls -R ./dist/pgmr-calc/
+        - name: List dist directory contents
+          run: ls -R ./dist/PgmrCalc/
+
+
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
         with:
@@ -47,9 +47,11 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}     # Your FTP username
           password: ${{ secrets.FTP_PASSWORD }}     # Your FTP password
           port: 21
+
           # Output Location: /home/runner/work/PgmrCalc/PgmrCalc/dist/pgmr-calc
           local-dir: ./dist/pgmr-calc/     # Path to your local build directory FAILED
           # local-dir: /pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: /dist/pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: PgmrCalc/dist/pgmr-calc/         # Path to your local build directory 
+
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
