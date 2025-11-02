@@ -45,5 +45,6 @@ jobs:
           port: 21
           # Output Location: /home/runner/work/PgmrCalc/PgmrCalc/dist/pgmr-calc
           # local-dir: ./dist/pgmr-calc/     # Path to your local build directory FAILED
-          local-dir: /pgmr-calc/         # Path to your local build directory
+          # local-dir: /pgmr-calc/         # Path to your local build directory FAILED
+          local-dir: /dist/pgmr-calc/         # Path to your local build directory
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
