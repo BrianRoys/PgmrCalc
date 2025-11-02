@@ -36,9 +36,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-        - name: List dist directory contents
-          run: ls -R ./dist/PgmrCalc/
-
+      - name: List dist directory contents
+        run: ls -R ./dist/PgmrCalc/
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
