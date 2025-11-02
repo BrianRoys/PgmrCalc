@@ -130,7 +130,7 @@ showHideText(ID: string) {
         break;
     }
     
-    // For displaying the stack in reverse LIFO order.
+    // For displaying the stack in reverse (LIFO) order.
     this.calcStackRev = [...this.calcStack].reverse();
 
     if(keystroke.length == 1) {
