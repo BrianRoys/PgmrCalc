@@ -26,8 +26,7 @@ jobs:
         #run: npm install
 
       - name: Build Angular application
-        run: npm run build -- --configuration=production
-
+        run: npm run build -- --configuration=production --base-href=/PgmrCalc/browser/
       - name: List dist directory contents 
         run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
