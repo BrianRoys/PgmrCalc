@@ -16,9 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: setup directory
-      #   run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/dist
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -45,8 +42,11 @@ jobs:
       # - name: List directory contents
       #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
 
-      # - name: List dist directory contents
-      #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/export/
+      - name: setup directory
+        run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/export
+
+      - name: List dist directory contents
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/export/
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
