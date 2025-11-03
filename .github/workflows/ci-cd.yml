@@ -39,8 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout content
-        uses: actions/checkout@v4
+      # - name: Checkout content
+      #   uses: actions/checkout@v4
 
       - name: List directory contents
         run: ls -R ./
