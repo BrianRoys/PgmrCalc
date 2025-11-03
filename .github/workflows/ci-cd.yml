@@ -16,6 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: setup directory
+        run: mkdir -p ./dist/pgmr-calc/
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -58,6 +61,6 @@ jobs:
           # local-dir: /pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: /dist/pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: PgmrCalc/dist/pgmr-calc/         # Path to your local build directory 
-          local-dir: /home/runner/work/PgmrCalc/PgmrCalc/
+          local-dir: /home/runner/work/PgmrCalc/PgmrCalc/ # this deploys but does not work
 
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
