@@ -13,17 +13,57 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 
 export class AppComponent {
-showInstructions: boolean = false;
-showStory: boolean = false;
-
-showHideText(ID: string) {
-  if (ID === 'H') {
-    this.showInstructions = !this.showInstructions;
-  } 
-  if (ID === 'S') {
-    this.showStory = !this.showStory;
-  } 
+cmdMod() {
+  this.processKyestroke('%');
 }
+  cmdHKey(arg0: string) {
+    this.processKyestroke(arg0);
+  }
+  cmdKey(arg0: number) {
+    this.processKyestroke(arg0.toString());
+  }
+  cmdPop() {
+    this.processKyestroke('Escape');
+  }
+  cmdPush() {
+    this.processKyestroke('Enter');
+  }
+  cmdNot() {
+    this.processKyestroke('!');
+  }
+  cmdAnd() {
+    this.processKyestroke('&');
+  }
+  cmdXor() {
+    this.processKyestroke('^');
+  }
+  cmdOr() {
+    this.processKyestroke('|');
+  }
+  cmdDiv() {
+    this.processKyestroke('/');
+  }
+  cmdMult() {
+    this.processKyestroke('*');
+  }
+  cmdSub() {
+    this.processKyestroke('-');
+  }
+  cmdAdd() {
+    this.processKyestroke('+');
+  }
+  showInstructions: boolean = false;
+  showStory: boolean = false;
+
+  showHideText(ID: string) {
+    if (ID === 'H') {
+      this.showInstructions = !this.showInstructions;
+    } 
+    if (ID === 'S') {
+      this.showStory = !this.showStory;
+    } 
+  }
+
   title = 'PgmrCalc';
   calcMode: ('Binary' | 'Hex') | 'Decimal' = 'Decimal';
   calcValue: bigint = 0n;
@@ -55,8 +95,10 @@ showHideText(ID: string) {
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const keystroke = event.key;
-    const key = event.key.substring(0, 1);
+    this.processKyestroke(keystroke);
+  }
 
+  processKyestroke(keystroke: string) {
     switch(keystroke) {
       case 'ArrowLeft':
         switch(this.calcMode) {
@@ -116,6 +158,9 @@ showHideText(ID: string) {
       case '/':
         this.calcValue = (this.calcStack.pop() ?? 0n) / this.calcValue;
         break;
+      case '%':
+        this.calcValue = (this.calcStack.pop() ?? 0n) % this.calcValue;
+        break;
       case '&':
         this.calcValue &= this.calcStack.pop() ?? 0n;
         break;
@@ -134,6 +179,7 @@ showHideText(ID: string) {
     this.calcStackRev = [...this.calcStack].reverse();
 
     if(keystroke.length == 1) {
+      const key = keystroke;
       switch (this.calcMode) {
         case 'Decimal':
           if (key >= '0' && key <= '9') {
