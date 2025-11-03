@@ -34,11 +34,11 @@ jobs:
       - name: List dist directory contents 
         run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
-  deployIt:
-    needs: buildIt
-    runs-on: ubuntu-latest
+  # deployIt:
+  #   needs: buildIt
+  #   runs-on: ubuntu-latest
     
-    steps:
+  #   steps:
       # - name: Checkout content
       #   uses: actions/checkout@v4
 
@@ -48,8 +48,8 @@ jobs:
       # - name: setup directory
       #   run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
-      # - name: List dist directory contents again
-      #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
+      - name: List dist directory contents again
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
