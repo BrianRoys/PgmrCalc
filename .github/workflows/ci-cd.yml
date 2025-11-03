@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: setup directory
-        run: mkdir -p ./dist/pgmr-calc/
+        run: mkdir -p ./dist
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
