@@ -16,8 +16,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: setup directory
-        run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/dist
+      # - name: setup directory
+      #   run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/dist
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -42,11 +42,11 @@ jobs:
       # - name: Checkout content
       #   uses: actions/checkout@v4
 
-      - name: List directory contents
-        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
+      # - name: List directory contents
+      #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
 
       - name: List dist directory contents
-        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/export/
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
@@ -61,8 +61,8 @@ jobs:
           # local-dir: ./dist/pgmr-calc/     # Path to your local build directory FAILED
           # local-dir: /pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: /dist/pgmr-calc/         # Path to your local build directory FAILED
-          local-dir: ./dist/               # Path to your local build directory 
+          # local-dir: ./dist/               # Path to your local build directory 
           # local-dir: PgmrCalc/dist/pgmr-calc/         # Path to your local build directory 
-          # local-dir: /home/runner/work/PgmrCalc/PgmrCalc/ # this deploys but does not work
+          local-dir: /home/runner/work/PgmrCalc/PgmrCalc/export/ # this deploys but does not work
 
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
