@@ -37,6 +37,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 0.5rem;
+    width: 100%;
+  }
+
   h1 {
     font-size: 3.125rem;
     color: var(--gray-900);
@@ -276,5 +285,9 @@
     <br/>
     of that original program, updated to leverage contemporary web technologies while preserving the core.
   </p>
+</div>
+<div class="footnote">
+  <strong>*</strong><i>Currently</i>, this app doesn't work on mobile devices or tablets. 
+  It needs a keyboard for input. Sorry &nbsp;:-(
 </div>
 <router-outlet />
