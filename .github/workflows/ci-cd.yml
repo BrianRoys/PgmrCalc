@@ -36,8 +36,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: List dist directory contents
+      - name: Checkout content
+        uses: actions/checkout@v4
+
+      - name: List directory contents
         run: ls -R .
+
+      - name: List dist directory contents
+        run: ls -R ./dist/pgmr-calc/
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
