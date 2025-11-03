@@ -239,14 +239,11 @@
 </p>
 <div *ngIf="showInstructions">
   <p>
-    This calculator supports Decimal, Hexadecimal, and Binary number inputs. 
+    This calculator supports Decimal, Hexadecimal, and Binary number inputs. press Enter to push 
+    the current value to the stack. Escape to pop the top value off the stack.
   </p>
   <p>
     Use the mode buttons or the left/right arrow buttons to switch between modes. 
-  </p>
-  <p>
-    Enter numbers and operations using the provided interface, then press Enter to push 
-    the current value to the stack. 
   </p>
   <p>
     You can perform calculations using standard operators 
@@ -254,9 +251,6 @@
   </p>
   <p>
     Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
-  </p>
-  <p>
-    Escape will pop the top value off the stack.
   </p>
 </div>
 <p>
@@ -269,11 +263,13 @@
     conversions and calculations. 
   </p>
   <p>
-    Being a 'programmer's' calculator, it is assumed you understand how to run 
-    Reverse Polish Notation (RPN) calculations. (the operation (e.g. *) runs on the top two stack values)
+    Being a Programmer's Calculator, it is assumed you understand how to run 
+    Reverse Polish Notation (RPN) calculations; the operation (e.g. *) runs on the top two stack values.
   </p>
   <p>
-    I wrote the original version of this calculator in Classic C, around 1985 during a lull in production demands. 
+    I wrote the original version of this calculator in Classic C, around 1985 during a lull in production
+    demands. What took days to code then, now takes hours. This Angular version is a modern reimagining
+    of that original program, updated to leverage contemporary web technologies while preserving the core.
   </p>
 </div>
 <router-outlet />
