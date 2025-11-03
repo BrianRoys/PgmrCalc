@@ -31,8 +31,8 @@ jobs:
       - name: Build Angular application
         run: npm run build -- --configuration=production
 
-      - name: List dist directory contents 1
-        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/export/
+      - name: List dist directory contents 
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
   deployIt:
     needs: buildIt
@@ -45,11 +45,11 @@ jobs:
       # - name: List directory contents
       #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
 
-      - name: setup directory
-        run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/export
+      # - name: setup directory
+      #   run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
-      - name: List dist directory contents
-        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/export/
+      - name: List dist directory contents again
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
@@ -67,6 +67,6 @@ jobs:
           # local-dir: ./dist/               # Path to your local build directory 
           # local-dir: PgmrCalc/dist/pgmr-calc/         # Path to your local build directory 
           # local-dir: /home/runner/work/PgmrCalc/PgmrCalc/export/ # this deploys but does not work
-          local-dir: ./export/ # this deploys but does not work
+          local-dir: ./dist/PgmrCal/ # this deploys but does not work
 
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
