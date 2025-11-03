@@ -43,7 +43,7 @@ jobs:
       #   uses: actions/checkout@v4
 
       - name: List directory contents
-        run: ls -R ./home/runner/work/PgmrCalc/PgmrCalc/
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
 
       - name: List dist directory contents
         run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist
