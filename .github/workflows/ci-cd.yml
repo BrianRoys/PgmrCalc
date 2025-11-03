@@ -37,7 +37,7 @@ jobs:
     
     steps:
       - name: List dist directory contents
-        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/pgmr-calc/
+        run: ls -R .
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
