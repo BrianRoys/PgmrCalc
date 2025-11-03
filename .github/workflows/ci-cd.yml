@@ -29,7 +29,7 @@ jobs:
         # run: npm test -- --no-watch --browsers=ChromeHeadless # Run tests in a headless browser
 
       - name: Build Angular application
-        run: npm run build -- --configuration=development
+        run: npm run build -- --configuration=production
 
   deployIt:
     needs: buildIt
@@ -39,11 +39,11 @@ jobs:
       - name: Checkout content
         uses: actions/checkout@v4
 
-      # - name: List directory contents
-      #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
+      - name: List directory contents
+        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
 
-      - name: List dist directory contents
-        run: ls -R ./dist/pgmr-calc/
+      # - name: List dist directory contents
+      #   run: ls -R ./dist/pgmr-calc/
 
       - name: FTP Deploy
         uses: SamKirkland/Ftp-Deploy-Action@4.0.0
@@ -53,7 +53,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}     # Your FTP password
           port: 21
 
-          # Output Location: /home/runner/work/PgmrCalc/PgmrCalc/dist/pgmr-calc
+          # Output Location: /home/runner/work/PgmrCalc/PgmrCalc/dist/pgmr-calc ?!
           # local-dir: ./dist/pgmr-calc/     # Path to your local build directory FAILED
           # local-dir: /pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: /dist/pgmr-calc/         # Path to your local build directory FAILED
