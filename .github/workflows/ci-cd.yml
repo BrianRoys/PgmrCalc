@@ -66,6 +66,7 @@ jobs:
           # local-dir: /dist/pgmr-calc/         # Path to your local build directory FAILED
           # local-dir: ./dist/               # Path to your local build directory 
           # local-dir: PgmrCalc/dist/pgmr-calc/         # Path to your local build directory 
-          local-dir: /home/runner/work/PgmrCalc/PgmrCalc/export/ # this deploys but does not work
+          # local-dir: /home/runner/work/PgmrCalc/PgmrCalc/export/ # this deploys but does not work
+          local-dir: ./export/ # this deploys but does not work
 
           server-dir: /public_html/PgmrCalc/         # Path on FTP server to deploy 
