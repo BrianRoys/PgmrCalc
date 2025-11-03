@@ -25,30 +25,10 @@ jobs:
         run: npm ci
         #run: npm install
 
-      # - name: Run unit tests
-        # run: npm test -- --no-watch --browsers=ChromeHeadless # Run tests in a headless browser
-
       - name: Build Angular application
         run: npm run build -- --configuration=production
 
       - name: List dist directory contents 
-        run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
-
-  # deployIt:
-  #   needs: buildIt
-  #   runs-on: ubuntu-latest
-    
-  #   steps:
-      # - name: Checkout content
-      #   uses: actions/checkout@v4
-
-      # - name: List directory contents
-      #   run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/
-
-      # - name: setup directory
-      #   run: mkdir -p /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
-
-      - name: List dist directory contents again
         run: ls -R /home/runner/work/PgmrCalc/PgmrCalc/dist/PgmrCalc
 
       - name: FTP Deploy
