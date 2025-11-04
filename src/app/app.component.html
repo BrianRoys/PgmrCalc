@@ -264,29 +264,35 @@
 <main class="main">
   <div class="content">
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="calc-column">
+
+    <div class="calc-column" id="decimal-stack">
       <button [class]="decimalClass" (click)="setModeToDecimal()">Decimal</button>
       <p class="pill"> {{ calcValue }} </p>
       @for (item of calcStackRev; track $index) {
         <p class="stack-item">{{ item }}</p>
       }
     </div>
+
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="calc-column">
+    
+    <div class="calc-column" id="hex-stack">
       <button [class]="hexClass" (click)="setModeToHex()">Hex</button>
       <p class="pill"> {{ calcValue | hexPipe }} </p>
       @for (item of calcStackRev; track $index) {
         <p class="stack-item">{{ item | hexPipe }}</p>
       }
     </div>
+
     <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="calc-column">
+    
+    <div class="calc-column" id="binary-stack">
       <button [class]="binaryClass" (click)="setModeToBinary()">Binary</button>
       <p class="pill"> {{ calcValue | binaryPipe }} </p>
       @for (item of calcStackRev; track $index) {
         <p class="stack-item">{{ item | binaryPipe }}</p>
       }
     </div>
+    
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
 </main>
