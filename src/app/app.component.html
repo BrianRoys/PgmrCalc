@@ -231,10 +231,10 @@
   <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
 </p>
 <p class="cmds">
-  <button class="pill" title="AND the top two values" (click)="cmdKey('&')">&</button>
-  <button class="pill" title="OR the top two values" (click)="cmdKey('|')">|</button>
-  <button class="pill" title="XOR top two values" (click)="cmdKey('^')">^</button>
-  <button class="pill" title="Invert the top value" (click)="cmdKey('~')">!</button>
+  <button class="pill" title="Bitwise AND the top two values" (click)="cmdKey('&')">&</button>
+  <button class="pill" title="Bitwise OR the top two values" (click)="cmdKey('|')">|</button>
+  <button class="pill" title="Bitwise XOR top two values" (click)="cmdKey('^')">^</button>
+  <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('~')">!</button>
 </p>
 <p class="cmds">
   <button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
@@ -291,7 +291,7 @@
   </div>
 </main>
 <p>
-  <button (click)="showHideText('H')">Hide/show instructions.</button>
+  <button (click)="showHideText('H')">Instructions...</button>
 </p>
 <div *ngIf="showInstructions">
   <p>
@@ -310,7 +310,7 @@
   </p>
 </div>
 <p>
-  <button (click)="showHideText('S')">Hide/show the story of this calculator.</button>
+  <button (click)="showHideText('S')">The story of this calculator...</button>
 </p>
 <div *ngIf="showStory">
   <p>
