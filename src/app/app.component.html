@@ -47,7 +47,8 @@
   }
 
   .cmds {
-    display: flex;
+    display: flex; 
+    flex-wrap: wrap;
     direction: row;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
@@ -223,40 +224,41 @@
 <h1>{{ title }}</h1>
 
 <p class="cmds">
-  <button class="pill" title="Add the top two values" (click)="cmdAdd()">+</button>
-  <button class="pill" title="Subtract the first stack value by the top value" (click)="cmdSub()">-</button>
-  <button class="pill" title="Multiply the top two values" (click)="cmdMult()">*</button>
-  <button class="pill" title="Divide the first stack value by the top value" (click)="cmdDiv()">/</button>
-  <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdMod()">%</button>
-
-  <button class="pill" title="AND the top two values" (click)="cmdAnd()">&</button>
-  <button class="pill" title="OR the top two values" (click)="cmdOr()">|</button>
-  <button class="pill" title="XOR top two values" (click)="cmdXor()">^</button>
-  <button class="pill" title="Invert the top value" (click)="cmdNot()">!</button>
+  <button class="pill" title="Add the top two values" (click)="cmdKey('+')">+</button>
+  <button class="pill" title="Subtract the first stack value by the top value" (click)="cmdKey('-')">-</button>
+  <button class="pill" title="Multiply the top two values" (click)="cmdKey('*')">*</button>
+  <button class="pill" title="Divide the first stack value by the top value" (click)="cmdKey('/')">/</button>
+  <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
 </p>
 <p class="cmds">
-  <button class="pill" title="Pop top value off stack" (click)="cmdPop()">Pop</button>
-  <button class="pill" (click)="cmdKey(0)">0</button>
-  <button class="pill" (click)="cmdKey(1)">1</button>
+  <button class="pill" title="AND the top two values" (click)="cmdKey('&')">&</button>
+  <button class="pill" title="OR the top two values" (click)="cmdKey('|')">|</button>
+  <button class="pill" title="XOR top two values" (click)="cmdKey('^')">^</button>
+  <button class="pill" title="Invert the top value" (click)="cmdKey('~')">!</button>
+</p>
+<p class="cmds">
+  <button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
+  <button class="pill" (click)="cmdKey('0')">0</button>
+  <button class="pill" (click)="cmdKey('1')">1</button>
   @if(calcMode  === 'Decimal' || calcMode === 'Hex') {
-    <button class="pill" (click)="cmdKey(2)">2</button>
-    <button class="pill" (click)="cmdKey(3)">3</button>
-    <button class="pill" (click)="cmdKey(4)">4</button>
-    <button class="pill" (click)="cmdKey(5)">5</button>
-    <button class="pill" (click)="cmdKey(6)">6</button>
-    <button class="pill" (click)="cmdKey(7)">7</button>
-    <button class="pill" (click)="cmdKey(8)">8</button>
-    <button class="pill" (click)="cmdKey(9)">9</button>
+    <button class="pill" (click)="cmdKey('2')">2</button>
+    <button class="pill" (click)="cmdKey('3')">3</button>
+    <button class="pill" (click)="cmdKey('4')">4</button>
+    <button class="pill" (click)="cmdKey('5')">5</button>
+    <button class="pill" (click)="cmdKey('6')">6</button>
+    <button class="pill" (click)="cmdKey('7')">7</button>
+    <button class="pill" (click)="cmdKey('8')">8</button>
+    <button class="pill" (click)="cmdKey('9')">9</button>
   }
   @if(calcMode === 'Hex') {
-    <button class="pill" (click)="cmdHKey('A')">A</button>
-    <button class="pill" (click)="cmdHKey('B')">B</button>
-    <button class="pill" (click)="cmdHKey('C')">C</button>
-    <button class="pill" (click)="cmdHKey('D')">D</button>
-    <button class="pill" (click)="cmdHKey('E')">E</button>
-    <button class="pill" (click)="cmdHKey('F')">F</button>
+    <button class="pill" (click)="cmdKey('A')">A</button>
+    <button class="pill" (click)="cmdKey('B')">B</button>
+    <button class="pill" (click)="cmdKey('C')">C</button>
+    <button class="pill" (click)="cmdKey('D')">D</button>
+    <button class="pill" (click)="cmdKey('E')">E</button>
+    <button class="pill" (click)="cmdKey('F')">F</button>
   } 
-  <button class="pill" title="Push current value to stack" (click)="cmdPush()">Push</button>
+  <button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
 </p>
 
 <main class="main">
@@ -330,9 +332,5 @@
     <br/>
     of that original program, updated to leverage contemporary web technologies while preserving the core.
   </p>
-</div>
-<div class="footnote">
-  <strong>*</strong><i>Currently</i>, this app doesn't work on mobile devices or tablets. 
-  It needs a keyboard for input. Sorry &nbsp;:-(
 </div>
 <router-outlet />

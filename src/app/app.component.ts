@@ -13,57 +13,7 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 
 export class AppComponent {
-cmdMod() {
-  this.processKyestroke('%');
-}
-  cmdHKey(arg0: string) {
-    this.processKyestroke(arg0);
-  }
-  cmdKey(arg0: number) {
-    this.processKyestroke(arg0.toString());
-  }
-  cmdPop() {
-    this.processKyestroke('Escape');
-  }
-  cmdPush() {
-    this.processKyestroke('Enter');
-  }
-  cmdNot() {
-    this.processKyestroke('!');
-  }
-  cmdAnd() {
-    this.processKyestroke('&');
-  }
-  cmdXor() {
-    this.processKyestroke('^');
-  }
-  cmdOr() {
-    this.processKyestroke('|');
-  }
-  cmdDiv() {
-    this.processKyestroke('/');
-  }
-  cmdMult() {
-    this.processKyestroke('*');
-  }
-  cmdSub() {
-    this.processKyestroke('-');
-  }
-  cmdAdd() {
-    this.processKyestroke('+');
-  }
-  showInstructions: boolean = false;
-  showStory: boolean = false;
-
-  showHideText(ID: string) {
-    if (ID === 'H') {
-      this.showInstructions = !this.showInstructions;
-    } 
-    if (ID === 'S') {
-      this.showStory = !this.showStory;
-    } 
-  }
-
+ 
   title = 'PgmrCalc';
   calcMode: ('Binary' | 'Hex') | 'Decimal' = 'Decimal';
   calcValue: bigint = 0n;
@@ -72,7 +22,22 @@ cmdMod() {
   binaryClass: string = 'pill';
   hexClass: string = 'pill';
   decimalClass: string = 'pill current-mode';
+  showInstructions: boolean = false;
+  showStory: boolean = false;
 
+  cmdKey(arg0: string) {
+    this.processKyestroke(arg0);
+  }
+ 
+  showHideText(ID: string) {
+    if (ID === 'H') {
+      this.showInstructions = !this.showInstructions;
+    } 
+    if (ID === 'S') {
+      this.showStory = !this.showStory;
+    } 
+  }
+ 
   setModeToBinary() {
     this.calcMode = 'Binary';
     this.binaryClass = 'current-mode pill';
