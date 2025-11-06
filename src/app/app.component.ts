@@ -2,12 +2,12 @@ import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BinaryPipe, HexPipe, CommonModule, NgIf],
+  imports: [RouterOutlet, BinaryPipe, HexPipe, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
@@ -16,6 +16,7 @@ export class AppComponent {
  
   title = 'PgmrCalc';
   calcMode: ('Binary' | 'Hex') | 'Decimal' = 'Decimal';
+  calcModeIsBinary: boolean = false;
   calcValue: bigint = 0n;
   calcStack: bigint[] = [];
   calcStackRev: bigint[] = [];
@@ -37,24 +38,15 @@ export class AppComponent {
       this.showStory = !this.showStory;
     } 
   }
- 
+
   setModeToBinary() {
     this.calcMode = 'Binary';
-    this.binaryClass = 'current-mode pill';
-    this.hexClass = 'pill';
-    this.decimalClass = 'pill';
   }
   setModeToHex() {
     this.calcMode = 'Hex';
-    this.hexClass = 'current-mode pill';
-    this.binaryClass = 'pill';
-    this.decimalClass = 'pill';
   }
   setModeToDecimal() {
     this.calcMode = 'Decimal';
-    this.decimalClass = 'current-mode pill';
-    this.binaryClass = 'pill';
-    this.hexClass = 'pill';
   }
   
   @HostListener('document:keyup', ['$event'])

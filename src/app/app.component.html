@@ -224,19 +224,6 @@
 <h1>{{ title }}</h1>
 
 <p class="cmds">
-  <button class="pill" title="Add the top two values" (click)="cmdKey('+')">+</button>
-  <button class="pill" title="Subtract the first stack value by the top value" (click)="cmdKey('-')">-</button>
-  <button class="pill" title="Multiply the top two values" (click)="cmdKey('*')">*</button>
-  <button class="pill" title="Divide the first stack value by the top value" (click)="cmdKey('/')">/</button>
-  <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
-</p>
-<p class="cmds">
-  <button class="pill" title="Bitwise AND the top two values" (click)="cmdKey('&')">&</button>
-  <button class="pill" title="Bitwise OR the top two values" (click)="cmdKey('|')">|</button>
-  <button class="pill" title="Bitwise XOR top two values" (click)="cmdKey('^')">^</button>
-  <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('~')">!</button>
-</p>
-<p class="cmds">
   <button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
   <button class="pill" (click)="cmdKey('0')">0</button>
   <button class="pill" (click)="cmdKey('1')">1</button>
@@ -261,12 +248,31 @@
   <button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
 </p>
 
+<p class="cmds">
+  <button class="pill" title="Add the top two values" (click)="cmdKey('+')">+</button>
+  <button class="pill" title="Subtract the first stack value by the top value" (click)="cmdKey('-')">-</button>
+  <button class="pill" title="Multiply the top two values" (click)="cmdKey('*')">*</button>
+  <button class="pill" title="Divide the first stack value by the top value" (click)="cmdKey('/')">/</button>
+  <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
+</p>
+<p class="cmds">
+  <button class="pill" title="Bitwise AND the top two values" (click)="cmdKey('&')">&</button>
+  <button class="pill" title="Bitwise OR the top two values" (click)="cmdKey('|')">|</button>
+  <button class="pill" title="Bitwise XOR top two values" (click)="cmdKey('^')">^</button>
+  <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('~')">!</button>
+</p>
+
 <main class="main">
   <div class="content">
     <div class="divider" role="separator" aria-label="Divider"></div>
 
     <div class="calc-column" id="decimal-stack">
-      <button [class]="decimalClass" (click)="setModeToDecimal()">Decimal</button>
+
+      @if(calcMode == 'Decimal') {
+        <button class="pill current-mode" (click)="setModeToDecimal()">Decimal</button>
+      } @else {
+        <button class='pill' (click)="setModeToDecimal()">Decimal</button>
+      }
       <p class="pill"> {{ calcValue }} </p>
       @for (item of calcStackRev; track $index) {
         <p class="stack-item">{{ item }}</p>
@@ -276,7 +282,11 @@
     <div class="divider" role="separator" aria-label="Divider"></div>
     
     <div class="calc-column" id="hex-stack">
-      <button [class]="hexClass" (click)="setModeToHex()">Hex</button>
+      @if(calcMode == 'Hex') {
+        <button class="pill current-mode" (click)="setModeToHex()">Hex</button>
+      } @else {
+        <button class='pill' (click)="setModeToHex()">Hex</button>
+      }
       <p class="pill"> {{ calcValue | hexPipe }} </p>
       @for (item of calcStackRev; track $index) {
         <p class="stack-item">{{ item | hexPipe }}</p>
@@ -286,7 +296,11 @@
     <div class="divider" role="separator" aria-label="Divider"></div>
     
     <div class="calc-column" id="binary-stack">
-      <button [class]="binaryClass" (click)="setModeToBinary()">Binary</button>
+      @if(calcMode == 'Binary') {
+        <button class="pill current-mode" (click)="setModeToBinary()">Binary</button>
+      } @else {
+        <button class='pill' (click)="setModeToBinary()">Binary</button>
+      }
       <p class="pill"> {{ calcValue | binaryPipe }} </p>
       @for (item of calcStackRev; track $index) {
         <p class="stack-item">{{ item | binaryPipe }}</p>
@@ -299,44 +313,51 @@
 <p>
   <button (click)="showHideText('H')">Instructions...</button>
 </p>
-<div *ngIf="showInstructions">
-  <p>
-    This calculator supports Decimal, Hexadecimal, and Binary number inputs. press Enter to push 
-    the current value to the stack. Escape to pop the top value off the stack.
-  </p>
-  <p>
-    Use the mode buttons or the left/right arrow buttons to switch between modes. 
-  </p>
-  <p>
-    You can perform calculations using standard operators 
-    (+, -, *, /) and view the results in all three number systems simultaneously.
-  </p>
-  <p>
-    Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
-  </p>
-</div>
+@if(showInstructions) {
+  <div >
+    <p>
+      This calculator supports Decimal, Hexadecimal, and Binary number inputs. press Enter to push 
+      the current value to the stack. Escape to pop the top value off the stack.
+    </p>
+    <p>
+      Use the mode buttons or the left/right arrow buttons to switch between modes. 
+    </p>
+    <p>
+      You can perform calculations using standard operators 
+      (+, -, *, /) and view the results in all three number systems simultaneously.
+    </p>
+    <p>
+      Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
+    </p>
+  </div>
+}
 <p>
   <button (click)="showHideText('S')">The story of this calculator...</button>
 </p>
-<div *ngIf="showStory">
-  <p>
-    This calculator was created to assist programmers in converting and calculating values 
-    <br/>
-    across different number systems commonly used in programming. It aims to provide a 
-    <br/>
-    user-friendly interface for quick conversions and calculations. 
-  </p>
-  <p>
-    Being a Programmer's Calculator, it runs on Reverse Polish Notation (RPN); 
-    <br/>
-    the operation (e.g. *) runs on the top two stack values.
-  </p>
-  <p>
-    I wrote the original version of this calculator in Classic C, around 1985 during a lull in production
-    <br/>
-    demands. What took days to code then, took only hours. This Angular version is a modern reimagining
-    <br/>
-    of that original program, updated to leverage contemporary web technologies while preserving the core.
-  </p>
-</div>
+@if(showStory) {
+  <div>
+    <p>
+      I wrote the original version of this calculator in Classic C, on DOS, 80x25 text screen in 16 colors.
+      <br/> It was back around 1985 during a lull in production
+      <br/>
+      demands. What took days to code then, took only hours. This Angular version is a modern reimagining
+      <br/>
+      of that original program, updated to leverage contemporary web technologies while preserving the core.
+    </p>
+    <p>
+      This calculator was created to assist programmers in converting and calculating values 
+      <br/>
+      across different number systems commonly used in programming. It aims to provide a 
+      <br/>
+      user-friendly interface for quick conversions and calculations. 
+    </p>
+    <p>
+      Being a Programmer's Calculator, it runs on Reverse Polish Notation (RPN); 
+      <br/>
+      the operation (e.g. +) runs on the top two stack values: enter a value, press Enter to 
+      <br/>
+      push it to the stack, enter another value, press Enter, then press + to add them together.
+    </p>
+  </div>
+}
 <router-outlet />
