@@ -224,7 +224,10 @@
 <h1>{{ title }}</h1>
 
 <p class="cmds">
-  <button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
+<button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
+</p>
+
+<p class="cmds">
   <button class="pill" (click)="cmdKey('0')">0</button>
   <button class="pill" (click)="cmdKey('1')">1</button>
   @if(calcMode  === 'Decimal' || calcMode === 'Hex') {
@@ -245,7 +248,10 @@
     <button class="pill" (click)="cmdKey('E')">E</button>
     <button class="pill" (click)="cmdKey('F')">F</button>
   } 
-  <button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
+</p>
+
+<p class="cmds">
+<button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
 </p>
 
 <p class="cmds">
@@ -269,7 +275,7 @@
     <div class="calc-column" id="decimal-stack">
 
       @if(calcMode == 'Decimal') {
-        <button class="pill current-mode" (click)="setModeToDecimal()">Decimal</button>
+        <button class="pill current-mode">Decimal</button>
       } @else {
         <button class='pill' (click)="setModeToDecimal()">Decimal</button>
       }
@@ -283,7 +289,7 @@
     
     <div class="calc-column" id="hex-stack">
       @if(calcMode == 'Hex') {
-        <button class="pill current-mode" (click)="setModeToHex()">Hex</button>
+        <button class="pill current-mode">Hex</button>
       } @else {
         <button class='pill' (click)="setModeToHex()">Hex</button>
       }
@@ -297,7 +303,7 @@
     
     <div class="calc-column" id="binary-stack">
       @if(calcMode == 'Binary') {
-        <button class="pill current-mode" (click)="setModeToBinary()">Binary</button>
+        <button class="pill current-mode">Binary</button>
       } @else {
         <button class='pill' (click)="setModeToBinary()">Binary</button>
       }
@@ -310,6 +316,7 @@
     <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
 </main>
+
 <p>
   <button (click)="showHideText('H')">Instructions...</button>
 </p>
