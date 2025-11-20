@@ -35,7 +35,7 @@ export class AppComponent {
       this.showInstructions = !this.showInstructions;
     } 
     if (ID === 'S') { // "S" for "Story"
-      this.showStory = !this.showStory;«
+      this.showStory = !this.showStory;
     } 
   }
 
