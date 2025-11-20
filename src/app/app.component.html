@@ -248,6 +248,7 @@
     <button class="pill" (click)="cmdKey('E')">E</button>
     <button class="pill" (click)="cmdKey('F')">F</button>
   } 
+  <button class="pill" (click)="cmdKey('Backspace')">«</button>
 </p>
 
 <p class="cmds">
@@ -277,7 +278,7 @@
       @if(calcMode == 'Decimal') {
         <button class="pill current-mode">Decimal</button>
       } @else {
-        <button class='pill' (click)="setModeToDecimal()">Decimal</button>
+        <button class='pill' (click)="setMode('Decimal')">Decimal</button>
       }
       <p class="pill"> {{ calcValue }} </p>
       @for (item of calcStackRev; track $index) {
@@ -291,7 +292,7 @@
       @if(calcMode == 'Hex') {
         <button class="pill current-mode">Hex</button>
       } @else {
-        <button class='pill' (click)="setModeToHex()">Hex</button>
+        <button class='pill' (click)="setMode('Hex')">Hex</button>
       }
       <p class="pill"> {{ calcValue | hexPipe }} </p>
       @for (item of calcStackRev; track $index) {
@@ -305,7 +306,7 @@
       @if(calcMode == 'Binary') {
         <button class="pill current-mode">Binary</button>
       } @else {
-        <button class='pill' (click)="setModeToBinary()">Binary</button>
+        <button class='pill' (click)="setMode('Binary')">Binary</button>
       }
       <p class="pill"> {{ calcValue | binaryPipe }} </p>
       @for (item of calcStackRev; track $index) {

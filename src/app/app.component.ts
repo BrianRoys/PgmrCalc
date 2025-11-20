@@ -31,22 +31,16 @@ export class AppComponent {
   }
  
   showHideText(ID: string) {
-    if (ID === 'H') {
+    if (ID === 'H') { // "H" for "How to"
       this.showInstructions = !this.showInstructions;
     } 
-    if (ID === 'S') {
-      this.showStory = !this.showStory;
+    if (ID === 'S') { // "S" for "Story"
+      this.showStory = !this.showStory;«
     } 
   }
 
-  setModeToBinary() {
-    this.calcMode = 'Binary';
-  }
-  setModeToHex() {
-    this.calcMode = 'Hex';
-  }
-  setModeToDecimal() {
-    this.calcMode = 'Decimal';
+  setMode(mode: 'Binary' | 'Hex' | 'Decimal') {
+    this.calcMode = mode;
   }
   
   @HostListener('document:keyup', ['$event'])
@@ -60,26 +54,26 @@ export class AppComponent {
       case 'ArrowLeft':
         switch(this.calcMode) {
           case 'Decimal':
-            this.setModeToBinary();
+            this.setMode('Binary');
             break;
           case 'Hex':
-            this.setModeToDecimal();
+            this.setMode('Decimal');
             break;
           case 'Binary':
-            this.setModeToHex();
+            this.setMode('Hex');
             break;
         }
         break;
       case 'ArrowRight':
         switch(this.calcMode) {
           case 'Decimal':
-            this.setModeToHex();
+            this.setMode('Hex');
             break;
           case 'Hex':
-            this.setModeToBinary();
+            this.setMode('Binary');
             break;
           case 'Binary':
-            this.setModeToDecimal();
+            this.setMode('Decimal');
             break;
         }
         break;
