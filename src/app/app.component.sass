@@ -1,0 +1,160 @@
+:host 
+    --bright-blue: oklch(51.01% 0.274 263.83)
+    --electric-violet: oklch(53.18% 0.28 296.97)
+    --french-violet: oklch(47.66% 0.246 305.88)
+    --vivid-pink: oklch(69.02% 0.277 332.77)
+    --hot-red: oklch(61.42% 0.238 15.34)
+    --orange-red: oklch(63.32% 0.24 31.68)
+
+    --red-ish: rgb(255, 64, 64)
+    --blue-ish: rgb(64, 64, 255)
+    --green-ish: rgb(64, 255, 64)
+
+    --gray-900: oklch(19.37% 0.006 300.98)
+    --gray-700: oklch(36.98% 0.014 302.71)
+    --gray-400: oklch(70.9% 0.015 304.04)
+
+    --vertical-gradient: linear-gradient(180deg, var(--red-ish) 0%, var(--blue-ish) 100% )
+    --horizontal-gradient: linear-gradient(90deg, var(--red-ish) 0%, var(--blue-ish) 100% )
+    --pill-background: lightgray
+    --pill-color: brightblue
+    --pill-accent: var(--bright-blue)
+    --stack-item-accent: var(--gray-700)
+    --label-text: blue
+    --border-radius: 10px
+    --border-width: 7px
+    --border-style: outset
+
+    font-family: Tahoma, Verdana, sans-serif
+    box-sizing: border-box
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+   
+*, *:before, *:after
+    box-sizing: inherit
+
+
+a
+    color: #0366d6
+    text-decoration: none
+
+fieldset
+    background-color: darkgrey
+    border-style: var(--border-style)
+    border-width: var(--border-width)
+    border-radius: var(--border-radius)
+    padding: 0.2em
+
+legend
+    background-color: darkgrey
+    font-size: x-large
+    font-weight: 500
+    color: var(--label-text)
+    line-height: 100%
+    margin: 0
+    border-style: outset
+    border-width: var(--border-width)
+    border-radius: var(--border-radius)
+    padding: 0.3em
+
+a:hover
+    text-decoration: underline
+
+.cmd-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    
+.cmds 
+    display: flex
+    flex-wrap: wrap
+    direction: row
+    gap: 0.5rem
+    margin-bottom: 0.5rem
+
+p
+    margin: 0
+
+main 
+    width: 100%
+    min-height: 100%
+    display: flex
+    /* justify-content: center */
+    align-items: center
+    padding: 1rem
+    box-sizing: inherit
+    position: relative
+  
+.calc-column 
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.content 
+    display: flex
+    justify-content: center
+    width: 100%
+
+.content p 
+    margin-top: 0.25rem
+  
+.divider 
+    width: 2px
+    background: var(--vertical-gradient)
+    margin-inline: 0.5rem
+
+.stack-item 
+    display: flex
+    align-items: center
+    --pill-accent: var(--bright-blue)
+    background: color-mix(in srgb, var(--stack-item-accent) 15%, transparent)
+    color: var(--pill-accent)
+    padding-inline: 0.75rem
+    padding-block: 0.375rem
+    border-radius: 0
+    border: 0
+    transition: background 0.3s ease
+    font-family: var(--inter-font)
+    font-size: 0.875rem
+    font-style: normal
+    font-weight: 500
+    line-height: 1.4rem
+    letter-spacing: -0.00875rem
+    text-decoration: none
+
+.pill 
+    display: flex
+    align-items: center
+    background: white
+    color: var(--label-text)
+    padding-inline: 0.75rem
+    padding-block: 0.375rem
+    border-width: var(--border-width)
+    border-radius: var(--border-radius)
+    border-style: var(--border-style)
+    transition: background 0.3s ease
+    font-family: var(--inter-font)
+    font-style: normal
+    font-weight: 500
+    line-height: 1.4rem
+    letter-spacing: -0.00875rem
+    text-decoration: none
+ 
+.pill:hover 
+    background: color-mix(in srgb, var(--pill-accent) 25%, transparent)
+
+.current-mode
+    background-color: var(--red-ish)
+
+.current-mode:hover
+    background-color: color-mix(in srgb, var(--red-ish) 65%, transparent)
+
+@media screen and (max-width: 650px) 
+    .content 
+        flex-direction: column
+
+    .divider 
+        height: 2px
+        width: 100%
+        background: var(--horizontal-gradient)
+        margin-block: 1.5rem

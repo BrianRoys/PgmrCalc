@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 
 export class AppComponent {
  
-  title = signal('PgmrCalc');
+  title = signal('Programmer\'s Calculator');
   calcMode = signal('Decimal');
   calcValue = signal(0n);
   calcStack = signal([0n]);
@@ -31,7 +31,7 @@ export class AppComponent {
       this.showInstructions.set(!this.showInstructions());
     } 
     if (ID === 'S') { // "S" for "Story"
-      this.showStory.set(!this.showStory);
+      this.showStory.set(!this.showStory());
     } 
   }
 

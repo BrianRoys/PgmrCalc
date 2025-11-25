@@ -1,371 +1,151 @@
-<style>
-  :host {
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
-
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
-
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-      180deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-      90deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --pill-accent: var(--bright-blue);
-    --stack-item-accent: var(--gray-700);
-
-    /* font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol"; */
-    font-family: Tahoma, Verdana, sans-serif;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .footnote {
-    font-size: 0.85rem;
-    color: var(--gray-700);
-    margin-top: 1rem;
-    position: fixed;
-    bottom: 0.5rem;
-    width: 100%;
-  }
-
-  .cmds {
-    display: flex; 
-    flex-wrap: wrap;
-    direction: row;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  h1 {
-    font-size: 3.125rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    line-height: 100%;
-    /* letter-spacing: -0.125rem; */
-    margin: 0;
-    /* font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol"; */
-  }
-
-  p {
-    margin: 0;
-    color: var(--gray-700);
-  }
-
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-  }
-
-  .calc-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* gap: 1rem; */
-  }
-
-  .angular-logo {
-    max-width: 9.2rem;
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    /* margin-bottom: 3rem; */
-  }
-
-  .content h1 {
-    margin-top: 1.75rem;
-  }
-
-  .content p {
-    margin-top: 0.25rem;
-  }
-
-  .divider {
-    width: 1px;
-    background: var(--red-to-pink-to-purple-vertical-gradient);
-    margin-inline: 0.5rem;
-  }
-
-  .pill-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .stack-item {
-    display: flex;
-    align-items: center;
-    --pill-accent: var(--bright-blue);
-    background: color-mix(in srgb, var(--stack-item-accent) 15%, transparent);
-    color: var(--pill-accent);
-    padding-inline: 0.75rem;
-    padding-block: 0.375rem;
-    border-radius: 0;
-    border: 0;
-    transition: background 0.3s ease;
-    font-family: var(--inter-font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.4rem;
-    letter-spacing: -0.00875rem;
-    text-decoration: none;
-  }
-
-  .pill {
-    display: flex;
-    align-items: center;
-    --pill-accent: var(--bright-blue);
-    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
-    color: var(--pill-accent);
-    padding-inline: 0.75rem;
-    padding-block: 0.375rem;
-    border-radius: 0.75rem;
-    border: 0;
-    transition: background 0.3s ease;
-    font-family: var(--inter-font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.4rem;
-    letter-spacing: -0.00875rem;
-    text-decoration: none;
-  }
-
-  .pill:hover {
-    background: color-mix(in srgb, var(--pill-accent) 25%, transparent);
-  }
-
-  .pill-group .pill:nth-child(6n + 1) {
-    --pill-accent: var(--bright-blue);
-  }
-  .pill-group .pill:nth-child(6n + 2) {
-    --pill-accent: var(--french-violet);
-  }
-  .pill-group .pill:nth-child(6n + 3),
-  .pill-group .pill:nth-child(6n + 4),
-  .pill-group .pill:nth-child(6n + 5) {
-    --pill-accent: var(--hot-red);
-  }
-
-  .pill-group svg {
-    margin-inline-start: 0.25rem;
-  }
-
-  .current-mode{
-    background-color: rgb(43, 255, 0);
-  }
-  .current-mode:hover{
-    background-color: rgb(43, 255, 0);
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 0.73rem;
-    margin-top: 1.5rem;
-  }
-
-  .social-links path {
-    transition: fill 0.3s ease;
-    fill: var(--gray-400);
-  }
-
-  .social-links a:hover svg path {
-    fill: var(--gray-900);
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: var(--red-to-pink-to-purple-horizontal-gradient);
-      margin-block: 1.5rem;
-    }
-  }
-</style>
-
-<h1>{{ title() }}</h1>
-
-<p class="cmds">
-<button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
-</p>
-
-<p class="cmds">
-  <button class="pill" (click)="cmdKey('0')">0</button>
-  <button class="pill" (click)="cmdKey('1')">1</button>
-  @if(calcMode()  === 'Decimal' || calcMode() === 'Hex') {
-    <button class="pill" (click)="cmdKey('2')">2</button>
-    <button class="pill" (click)="cmdKey('3')">3</button>
-    <button class="pill" (click)="cmdKey('4')">4</button>
-    <button class="pill" (click)="cmdKey('5')">5</button>
-    <button class="pill" (click)="cmdKey('6')">6</button>
-    <button class="pill" (click)="cmdKey('7')">7</button>
-    <button class="pill" (click)="cmdKey('8')">8</button>
-    <button class="pill" (click)="cmdKey('9')">9</button>
-  }
-  @if(calcMode() === 'Hex') {
-    <button class="pill" (click)="cmdKey('A')">A</button>
-    <button class="pill" (click)="cmdKey('B')">B</button>
-    <button class="pill" (click)="cmdKey('C')">C</button>
-    <button class="pill" (click)="cmdKey('D')">D</button>
-    <button class="pill" (click)="cmdKey('E')">E</button>
-    <button class="pill" (click)="cmdKey('F')">F</button>
-  } 
-  <button class="pill" (click)="cmdKey('Backspace')">«</button>
-</p>
-
-<p class="cmds">
-<button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
-</p>
-
-<p class="cmds">
-  <button class="pill" title="Add the top two values" (click)="cmdKey('+')">+</button>
-  <button class="pill" title="Subtract the first stack value by the top value" (click)="cmdKey('-')">-</button>
-  <button class="pill" title="Multiply the top two values" (click)="cmdKey('*')">*</button>
-  <button class="pill" title="Divide the first stack value by the top value" (click)="cmdKey('/')">/</button>
-  <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
-</p>
-<p class="cmds">
-  <button class="pill" title="Bitwise AND the top two values" (click)="cmdKey('&')">&</button>
-  <button class="pill" title="Bitwise OR the top two values" (click)="cmdKey('|')">|</button>
-  <button class="pill" title="Bitwise XOR top two values" (click)="cmdKey('^')">^</button>
-  <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('~')">!</button>
-</p>
-
-<main class="main">
-  <div class="content">
-    <div class="divider" role="separator" aria-label="Divider"></div>
-
-    <div class="calc-column" id="decimal-stack">
-
-      @if(calcMode() == 'Decimal') {
-        <button class="pill current-mode">Decimal</button>
-      } @else {
-        <button class='pill' (click)="setMode('Decimal')">Decimal</button>
-      }
-      <p class="pill"> {{ calcValue() }} </p>
-      @for (item of calcStackRev(); track $index) {
-        <p class="stack-item">{{ item }}</p>
-      }
-    </div>
-
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    
-    <div class="calc-column" id="hex-stack">
-      @if(calcMode() == 'Hex') {
-        <button class="pill current-mode">Hex</button>
-      } @else {
-        <button class='pill' (click)="setMode('Hex')">Hex</button>
-      }
-      <p class="pill"> {{ calcValue() | hexPipe }} </p>
-      @for (item of calcStackRev(); track $index) {
-        <p class="stack-item">{{ item | hexPipe }}</p>
-      }
-    </div>
-
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    
-    <div class="calc-column" id="binary-stack">
-      @if(calcMode() == 'Binary') {
-        <button class="pill current-mode">Binary</button>
-      } @else {
-        <button class='pill' (click)="setMode('Binary')">Binary</button>
-      }
-      <p class="pill"> {{ calcValue() | binaryPipe }} </p>
-      @for (item of calcStackRev(); track $index) {
-        <p class="stack-item">{{ item | binaryPipe }}</p>
-      }
-    </div>
-    
-    <div class="divider" role="separator" aria-label="Divider"></div>
-  </div>
-</main>
-
-<p>
-  <button (click)="showHideText('H')">Instructions...</button>
-</p>
-@if(showInstructions()) {
-  <div >
-    <p>
-      This calculator supports Decimal, Hexadecimal, and Binary number inputs. press Enter to push 
-      the current value to the stack. Escape to pop the top value off the stack.
+<fieldset>
+  <legend>{{ title() }}</legend>
+  <div class="cmd-container">
+    <p class="cmds">
+      <button class="pill" title="Pop top value off stack" (click)="cmdKey('Escape')">Pop</button>
     </p>
-    <p>
-      Use the mode buttons or the left/right arrow buttons to switch between modes. 
+
+    <p class="cmds">
+      <button class="pill" (click)="cmdKey('0')">0</button>
+      <button class="pill" (click)="cmdKey('1')">1</button>
+      @if(calcMode()  === 'Decimal' || calcMode() === 'Hex') {
+        <button class="pill" (click)="cmdKey('2')">2</button>
+        <button class="pill" (click)="cmdKey('3')">3</button>
+        <button class="pill" (click)="cmdKey('4')">4</button>
+        <button class="pill" (click)="cmdKey('5')">5</button>
+        <button class="pill" (click)="cmdKey('6')">6</button>
+        <button class="pill" (click)="cmdKey('7')">7</button>
+        <button class="pill" (click)="cmdKey('8')">8</button>
+        <button class="pill" (click)="cmdKey('9')">9</button>
+      }
+      @if(calcMode() === 'Hex') {
+        <button class="pill" (click)="cmdKey('A')">A</button>
+        <button class="pill" (click)="cmdKey('B')">B</button>
+        <button class="pill" (click)="cmdKey('C')">C</button>
+        <button class="pill" (click)="cmdKey('D')">D</button>
+        <button class="pill" (click)="cmdKey('E')">E</button>
+        <button class="pill" (click)="cmdKey('F')">F</button>
+      } 
+      <button class="pill" (click)="cmdKey('Backspace')">«</button>
     </p>
-    <p>
-      You can perform calculations using standard operators 
-      (+, -, *, /) and view the results in all three number systems simultaneously.
+
+    <p class="cmds">
+      <button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
     </p>
-    <p>
-      Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
+
+    <p class="cmds">
+      <button class="pill" title="Add the top two values" (click)="cmdKey('+')">+</button>
+      <button class="pill" title="Subtract the first stack value by the top value" (click)="cmdKey('-')">-</button>
+      <button class="pill" title="Multiply the top two values" (click)="cmdKey('*')">*</button>
+      <button class="pill" title="Divide the first stack value by the top value" (click)="cmdKey('/')">/</button>
+      <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
+    </p>
+    <p class="cmds">
+      <button class="pill" title="Bitwise AND the top two values" (click)="cmdKey('&')">&</button>
+      <button class="pill" title="Bitwise OR the top two values" (click)="cmdKey('|')">|</button>
+      <button class="pill" title="Bitwise XOR top two values" (click)="cmdKey('^')">^</button>
+      <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('~')">!</button>
     </p>
   </div>
-}
-<p>
-  <button (click)="showHideText('S')">The story of this calculator...</button>
-</p>
-@if(showStory()) {
-  <div>
-    <p>
-      I wrote the original version of this calculator in Classic C, on DOS, 80x25 text screen in 16 colors.
-      <br/> It was back around 1985 during a lull in production
-      <br/>
-      demands. What took days to code then, took only hours. This Angular version is a modern reimagining
-      <br/>
-      of that original program, updated to leverage contemporary web technologies while preserving the core.
-    </p>
-    <p>
-      This calculator was created to assist programmers in converting and calculating values 
-      <br/>
-      across different number systems commonly used in programming. It aims to provide a 
-      <br/>
-      user-friendly interface for quick conversions and calculations. 
-    </p>
-    <p>
-      Being a Programmer's Calculator, it runs on Reverse Polish Notation (RPN); 
-      <br/>
-      the operation (e.g. +) runs on the top two stack values: enter a value, press Enter to 
-      <br/>
-      push it to the stack, enter another value, press Enter, then press + to add them together.
-    </p>
-  </div>
-}
+
+  <main class="main content">
+    <div class="content">
+      <div class="divider" role="separator" aria-label="Divider"></div>
+
+      <div class="calc-column" id="decimal-stack">
+
+        @if(calcMode() == 'Decimal') {
+          <button class="pill current-mode">Decimal</button>
+        } @else {
+          <button class='pill' (click)="setMode('Decimal')">Decimal</button>
+        }
+        <p class="pill"> {{ calcValue() }} </p>
+        @for (item of calcStackRev(); track $index) {
+          <p class="stack-item">{{ item }}</p>
+        }
+      </div>
+
+      <div class="divider" role="separator" aria-label="Divider"></div>
+      
+      <div class="calc-column" id="hex-stack">
+        @if(calcMode() == 'Hex') {
+          <button class="pill current-mode">Hex</button>
+        } @else {
+          <button class='pill' (click)="setMode('Hex')">Hex</button>
+        }
+        <p class="pill"> {{ calcValue() | hexPipe }} </p>
+        @for (item of calcStackRev(); track $index) {
+          <p class="stack-item">{{ item | hexPipe }}</p>
+        }
+      </div>
+
+      <div class="divider" role="separator" aria-label="Divider"></div>
+      
+      <div class="calc-column" id="binary-stack">
+        @if(calcMode() == 'Binary') {
+          <button class="pill current-mode">Binary</button>
+        } @else {
+          <button class='pill' (click)="setMode('Binary')">Binary</button>
+        }
+        <p class="pill"> {{ calcValue() | binaryPipe }} </p>
+        @for (item of calcStackRev(); track $index) {
+          <p class="stack-item">{{ item | binaryPipe }}</p>
+        }
+      </div>
+      
+      <div class="divider" role="separator" aria-label="Divider"></div>
+    </div>
+  </main>
+
+  <p>
+    <button (click)="showHideText('H')">Instructions...</button>
+  </p>
+  @if(showInstructions()) {
+    <div >
+      <p>
+        This calculator supports Decimal, Hexadecimal, and Binary number inputs. press Enter to push 
+        the current value to the stack. Escape to pop the top value off the stack.
+      </p>
+      <p>
+        Use the mode buttons or the left/right arrow buttons to switch between modes. 
+      </p>
+      <p>
+        You can perform calculations using standard operators 
+        (+, -, *, /) and view the results in all three number systems simultaneously.
+      </p>
+      <p>
+        Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
+      </p>
+    </div>
+  }
+  <p>
+    <button (click)="showHideText('S')">The story of this calculator...</button>
+  </p>
+  @if(showStory()) {
+    <div>
+      <p>
+        I wrote the original version of this calculator in Classic C, on DOS, 80x25 text screen in 16 colors.
+        <br/> It was back around 1985 during a lull in production
+        <br/>
+        demands. What took days to code then, took only hours. This Angular version is a modern reimagining
+        <br/>
+        of that original program, updated to leverage contemporary web technologies while preserving the core.
+      </p>
+      <p>
+        This calculator was created to assist programmers in converting and calculating values 
+        <br/>
+        across different number systems commonly used in programming. It aims to provide a 
+        <br/>
+        user-friendly interface for quick conversions and calculations. 
+      </p>
+      <p>
+        Being a Programmer's Calculator, it runs on Reverse Polish Notation (RPN); 
+        <br/>
+        the operation (e.g. +) runs on the top two stack values: enter a value, press Enter to 
+        <br/>
+        push it to the stack, enter another value, press Enter, then press + to add them together.
+      </p>
+    </div>
+  }
+</fieldset>
 <router-outlet />
