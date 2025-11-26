@@ -41,10 +41,12 @@
       <button class="pill" title="Get the mod/remainder from dividing the first stack value by the top value" (click)="cmdKey('%')">%</button>
     </p>
     <p class="cmds">
+      <button class="pill" title="Shift left" (click)="cmdKey('<')"><<</button>
       <button class="pill" title="Bitwise AND the top two values" (click)="cmdKey('&')">&</button>
       <button class="pill" title="Bitwise OR the top two values" (click)="cmdKey('|')">|</button>
       <button class="pill" title="Bitwise XOR top two values" (click)="cmdKey('^')">^</button>
-      <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('~')">!</button>
+      <button class="pill" title="Bitwise Invert the top value" (click)="cmdKey('!')">!</button>
+      <button class="pill" title="Shift right" (click)="cmdKey('>')">>></button>
     </p>
   </div>
 
@@ -108,9 +110,12 @@
   </p>
   @if(showStory()) {
     <ul>
-      <li>I wrote the original version of this calculator in Classic C, on DOS, 80x25 text screen in 16 colors.
-        It was back around 1985 during a lull in production demands. What took days to code then, took only 
-        hours. This Angular version is a modern reimagining of that original program, updated to leverage 
+      <li>I wrote the original version of this calculator in Classic C, on DOS, 
+        80x25 text screen in 16 colors.
+        It was back around 1985 during a lull in production demands. What took days
+        to code then, took only 
+        hours this time. This Angular version is a modern reimagining of that 
+        original program, updated to leverage 
         contemporary web technologies while preserving the core.
       </li>
       <li>

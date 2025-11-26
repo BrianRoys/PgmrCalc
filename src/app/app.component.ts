@@ -126,8 +126,14 @@ export class AppComponent {
       case '^':
         this.calcValue.update(v => v ^ (this.calcStack().pop() ?? 0n));
         break;
+      case '<':
+        this.calcValue.update(v => 2n * this.calcValue());
+        break;
+      case '>':
+        this.calcValue.update(v => this.calcValue() / 2n);
+        break;
       case '!':
-        this.calcValue.set( ~(this.calcStack().pop() ?? 0n));
+        this.calcValue.update(v => ~this.calcValue());
         break;
     }
     
