@@ -26,7 +26,7 @@
         <button class="pill" (click)="cmdKey('E')">E</button>
         <button class="pill" (click)="cmdKey('F')">F</button>
       } 
-      <button class="pill" (click)="cmdKey('Backspace')">«</button>
+      <button class="pill" title="Remove the last keystroke." (click)="cmdKey('Backspace')">«</button>
     </p>
 
     <p class="cmds">
@@ -50,7 +50,6 @@
 
   <main class="main content">
     <div class="content">
-      <div class="divider" role="separator" aria-label="Divider"></div>
 
       <div class="calc-column" id="decimal-stack">
 
@@ -65,8 +64,6 @@
         }
       </div>
 
-      <div class="divider" role="separator" aria-label="Divider"></div>
-      
       <div class="calc-column" id="hex-stack">
         @if(calcMode() == 'Hex') {
           <button class="pill current-mode">Hex</button>
@@ -79,8 +76,6 @@
         }
       </div>
 
-      <div class="divider" role="separator" aria-label="Divider"></div>
-      
       <div class="calc-column" id="binary-stack">
         @if(calcMode() == 'Binary') {
           <button class="pill current-mode">Binary</button>
@@ -92,8 +87,6 @@
           <p class="stack-item">{{ item | binaryPipe }}</p>
         }
       </div>
-      
-      <div class="divider" role="separator" aria-label="Divider"></div>
     </div>
   </main>
 
@@ -101,51 +94,46 @@
     <button (click)="showHideText('H')">Instructions...</button>
   </p>
   @if(showInstructions()) {
-    <div >
-      <p>
-        This calculator supports Decimal, Hexadecimal, and Binary number inputs. press Enter to push 
-        the current value to the stack. Escape to pop the top value off the stack.
-      </p>
-      <p>
-        Use the mode buttons or the left/right arrow buttons to switch between modes. 
-      </p>
-      <p>
-        You can perform calculations using standard operators 
-        (+, -, *, /) and view the results in all three number systems simultaneously.
-      </p>
-      <p>
-        Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.
-      </p>
-    </div>
+    <ul>
+      <li>Use the on-screen buttons or your keyboard to input numbers and operations.</li>
+      <li>Press 'Enter' to push the current value onto the stack.</li>
+      <li>Press 'Escape' to pop the top value off the stack.</li>
+      <li>Switch between Decimal, Hexadecimal, and Binary modes using the mode buttons, or right/left arrow keys.</li>
+      <li>Perform calculations using standard arithmetic and boolean operators in Reverse Polish Notation.</li>
+      <li>Boolean operations such as AND (&), OR (|), XOR (^), and NOT (!) are also supported.</li>
+    </ul>
   }
   <p>
     <button (click)="showHideText('S')">The story of this calculator...</button>
   </p>
   @if(showStory()) {
-    <div>
-      <p>
-        I wrote the original version of this calculator in Classic C, on DOS, 80x25 text screen in 16 colors.
-        <br/> It was back around 1985 during a lull in production
-        <br/>
-        demands. What took days to code then, took only hours. This Angular version is a modern reimagining
-        <br/>
-        of that original program, updated to leverage contemporary web technologies while preserving the core.
-      </p>
-      <p>
+    <ul>
+      <li>I wrote the original version of this calculator in Classic C, on DOS, 80x25 text screen in 16 colors.
+        It was back around 1985 during a lull in production demands. What took days to code then, took only 
+        hours. This Angular version is a modern reimagining of that original program, updated to leverage 
+        contemporary web technologies while preserving the core.
+      </li>
+      <li>
         This calculator was created to assist programmers in converting and calculating values 
-        <br/>
         across different number systems commonly used in programming. It aims to provide a 
-        <br/>
         user-friendly interface for quick conversions and calculations. 
-      </p>
-      <p>
+      </li>
+      <li>
         Being a Programmer's Calculator, it runs on Reverse Polish Notation (RPN); 
-        <br/>
         the operation (e.g. +) runs on the top two stack values: enter a value, press Enter to 
-        <br/>
         push it to the stack, enter another value, press Enter, then press + to add them together.
-      </p>
+      </li>
+    </ul>
+  }
+  @if (dbzError()) {
+    <div class="dbzError">
+      <h1>Division or Modulus by Zero Error!</h1>
+      <p>You tried to divide by zero which is sad, like if you had to share a cookie with your zero friends.</p>
+      <br/>
+      <button (click)="dbzError.set(false)">Clear Error</button>
     </div>
+    <fieldset class="error-box">
+      <legend>Error</legend>
+    </fieldset>
   }
 </fieldset>
-<router-outlet />

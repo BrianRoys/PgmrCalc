@@ -1,5 +1,4 @@
 import { Component, HostListener, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
 import { CommonModule } from '@angular/common';
@@ -7,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet, BinaryPipe, HexPipe, CommonModule ],
+  imports: [ BinaryPipe, HexPipe, CommonModule ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
@@ -21,6 +20,7 @@ export class AppComponent {
   calcStackRev = signal([0n]);
   showInstructions = signal(false);
   showStory = signal(false);
+  dbzError = signal(false);
 
   cmdKey(arg0: string) {
     this.processKyestroke(arg0);
@@ -104,9 +104,17 @@ export class AppComponent {
         this.calcValue.update(v => v * (this.calcStack().pop() ?? 0n));
         break;
       case '/':
+        if (this.calcValue() == 0n) {
+          this.dbzError.set(true);
+          return;
+        }
         this.calcValue.update(v => (this.calcStack().pop() ?? 0n) / v);
         break;
       case '%':
+        if (this.calcValue() == 0n) {
+          this.dbzError.set(true);
+          return;
+        }
         this.calcValue.update(v => (this.calcStack().pop() ?? 0n) % v);
         break;
       case '&':
