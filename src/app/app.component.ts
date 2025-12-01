@@ -2,11 +2,12 @@ import { Component, HostListener, signal } from '@angular/core';
 import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from "./components/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ BinaryPipe, HexPipe, CommonModule ],
+  imports: [BinaryPipe, HexPipe, CommonModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
