@@ -3,6 +3,7 @@ import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "./components/header/header.component";
+import { RNGService } from './rng.service';
 
 @Component({
   selector: 'app-root',
@@ -143,6 +144,12 @@ export class AppComponent {
 
     if(keystroke.length == 1) {
       const key = keystroke;
+      if (key === 'R') {
+        // Generate a random number between 0 and 1000
+        const rngValue = BigInt(new RNGService().getRandomInt(0, 1001));
+        this.calcValue.set(rngValue);
+        return;
+      }
       switch (this.calcMode()) {
         case 'Decimal':
           if (key >= '0' && key <= '9') {

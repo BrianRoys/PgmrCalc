@@ -31,6 +31,7 @@
     </p>
 
     <p class="cmds">
+      <button class="pill" title="Generate a Random Number" (click)="cmdKey('R')">RNG</button>
       <button class="pill" title="Push current value to stack" (click)="cmdKey('Enter')">Push</button>
     </p>
 
@@ -132,14 +133,11 @@
     </ul>
   }
   @if (dbzError()) {
-    <div class="dbzError">
-      <h1>Division or Modulus by Zero Error!</h1>
-      <p>You tried to divide by zero which is sad, like if you had to share a cookie with your zero friends.</p>
-      <br/>
-      <button (click)="dbzError.set(false)">Clear Error</button>
-    </div>
-    <fieldset class="error-box">
-      <legend>Error</legend>
+    <fieldset class="error-box dbzError">
+      <legend>Division or Modulus by Zero Error!</legend>
+        <p>You tried to divide by zero which is sad, like if you had to share your one cookie with your zero friends.</p>
+        <br/>
+        <button (click)="dbzError.set(false)">Clear Error</button>
     </fieldset>
   }
 </fieldset>
