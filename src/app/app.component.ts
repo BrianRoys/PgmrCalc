@@ -1,4 +1,4 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,8 @@ import { RNGService } from './rng.service';
   standalone: true,
   imports: [BinaryPipe, HexPipe, CommonModule, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass'
+  styleUrl: './app.component.sass',
+  providers: [RNGService] 
 })
 
 export class AppComponent {
@@ -23,6 +24,7 @@ export class AppComponent {
   showInstructions = signal(false);
   showStory = signal(false);
   dbzError = signal(false);
+  rng = inject(RNGService);
 
   cmdKey(arg0: string) {
     this.processKyestroke(arg0);
@@ -146,7 +148,7 @@ export class AppComponent {
       const key = keystroke;
       if (key === 'R') {
         // Generate a random number between 0 and 1000
-        const rngValue = BigInt(new RNGService().getRandomInt(0, 1001));
+        const rngValue = BigInt(this.rng.getRandomInt(0, 1001));
         this.calcValue.set(rngValue);
         return;
       }
