@@ -7,7 +7,10 @@ on:
   pull_request: 
     branches:
       - main # Trigger on pull requests targeting the main branch
- 
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   buildIt:
     runs-on: ubuntu-latest
