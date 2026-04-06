@@ -108,14 +108,14 @@ export class AppComponent {
         this.calcValue.update(v => v * (this.calcStack().pop() ?? 0n));
         break;
       case '/':
-        if (this.calcValue() == 0n) {
+        if (this.calcValue() === 0n) {
           this.dbzError.set(true);
           return;
         }
         this.calcValue.update(v => (this.calcStack().pop() ?? 0n) / v);
         break;
       case '%':
-        if (this.calcValue() == 0n) {
+        if (this.calcValue() === 0n) {
           this.dbzError.set(true);
           return;
         }
@@ -147,9 +147,9 @@ export class AppComponent {
     // For displaying the stack in reverse (LIFO) order.
     this.calcStackRev.set([...this.calcStack()].reverse());
 
-    if(keystroke.length == 1) {
+    if(keystroke.length === 1) {
       const key = keystroke;
-      if (key === 'R') {
+      if (key === 'R' || key === 'r') {
         
         // Generate a random number between 0 and 1000
         const rngValue = BigInt(this.rng.getRandomInt(0, 1001));

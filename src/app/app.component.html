@@ -58,7 +58,7 @@
 
       <div class="calc-column" id="decimal-stack">
 
-        @if(calcMode() == 'Decimal') {
+        @if(calcMode() === 'Decimal') {
           <button class="pill current-mode">Decimal</button>
         } @else {
           <button class='pill' (click)="setMode('Decimal')">Decimal</button>
@@ -70,7 +70,7 @@
       </div>
 
       <div class="calc-column" id="hex-stack">
-        @if(calcMode() == 'Hex') {
+        @if(calcMode() === 'Hex') {
           <button class="pill current-mode">Hex</button>
         } @else {
           <button class='pill' (click)="setMode('Hex')">Hex</button>
@@ -82,7 +82,7 @@
       </div>
 
       <div class="calc-column" id="binary-stack">
-        @if(calcMode() == 'Binary') {
+        @if(calcMode() === 'Binary') {
           <button class="pill current-mode">Binary</button>
         } @else {
           <button class='pill' (click)="setMode('Binary')">Binary</button>
