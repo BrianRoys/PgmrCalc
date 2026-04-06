@@ -139,6 +139,9 @@ export class AppComponent {
       case '!':
         this.calcValue.update(v => ~this.calcValue());
         break;
+      case '=':
+        this.calcStack().push(this.calcValue());
+        break;
     }
     
     // For displaying the stack in reverse (LIFO) order.
@@ -147,6 +150,7 @@ export class AppComponent {
     if(keystroke.length == 1) {
       const key = keystroke;
       if (key === 'R') {
+        
         // Generate a random number between 0 and 1000
         const rngValue = BigInt(this.rng.getRandomInt(0, 1001));
         this.calcValue.set(rngValue);
