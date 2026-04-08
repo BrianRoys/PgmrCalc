@@ -1,14 +1,14 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { BinaryPipe } from "./binary.pipe";
 import { HexPipe } from "./hex.pipe";
-import { CommonModule } from '@angular/common';
+
 import { HeaderComponent } from "./components/header/header.component";
 import { RNGService } from './rng.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BinaryPipe, HexPipe, CommonModule, HeaderComponent],
+  imports: [BinaryPipe, HexPipe, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
   providers: [RNGService] 
